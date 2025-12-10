@@ -1,10 +1,9 @@
 .navbar {
+  background-color: #064d36;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-  border-bottom: 2px dashed #ccc;
 }
 
 .navbar ul {
@@ -13,8 +12,12 @@
   list-style: none;
 }
 
-.navbar ul li a {
+.navbar a {
+  color: white;
   text-decoration: none;
-  font-weight: 600;
-  color: #444;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: yellow;
 }
