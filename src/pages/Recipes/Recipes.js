@@ -1,21 +1,29 @@
 import React from "react";
 import "./Recipes.css";
 
+// 1. IMPORT the image files
+import cholebhatureImage from "./images/cholebatrue.jpg";
+import panipuriImage from "./images/panipuri.jpg";
+import vadapauImage from "./images/vadapau.jpg";
+
 const recipes = [
   {
     id: 1,
     title: "Chole Bhature",
-    image: "./images/cholebatrue.jpg",
+    // 2. Use the imported variable
+    image: cholebhatureImage,
   },
   {
     id: 2,
     title: "Pani Puri",
-    image: "./images/panipuri.jpg",
+    // 2. Use the imported variable
+    image: panipuriImage,
   },
   {
     id: 3,
     title: "Vada Pau",
-    image: "./images/vadapau.jpg",
+    // 2. Use the imported variable
+    image: vadapauImage,
   },
 ];
 
@@ -41,6 +49,7 @@ const Recipes = () => {
       <div className="recipe-grid">
         {recipes.map((recipe) => (
           <div key={recipe.id} className="recipe-card">
+            {/* The src now receives the correct web path from the imported variable */}
             <img src={recipe.image} alt={recipe.title} />
             <h3>{recipe.title}</h3>
             <button className="view-btn">View Recipe</button>
