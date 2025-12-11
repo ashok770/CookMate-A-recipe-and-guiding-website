@@ -57,3 +57,12 @@
 .navbar {
   margin-bottom: 0;
 }
+.navbar {
+  margin: 0;
+  padding: 15px 30px;
+}
+
+.navbar nav ul {
+  margin: 0;
+  padding: 0;
+}

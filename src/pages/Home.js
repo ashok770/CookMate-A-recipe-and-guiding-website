@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 import heroBanner from "../assets/images/banner.jpg";
 import chickenImg from "../assets/images/chicken.jpg";
@@ -9,9 +10,9 @@ import cakeImg from "../assets/images/cake.jpg";
 const Home = () => {
   return (
     <div className="home">
-      {/* Page Wrapper */}
+      {/* Main Wrapper */}
       <div className="home-container">
-        {/* Hero Section */}
+        {/* HERO SECTION */}
         <section className="hero-section">
           <img src={heroBanner} className="hero-bg" alt="Banner" />
           <div className="hero-text">
@@ -21,32 +22,41 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Featured Recipes */}
+        {/* FEATURED RECIPES */}
         <section className="featured">
           <h2>Featured Recipes</h2>
 
           <div className="recipe-card-container">
-            <div className="recipe-card">
-              <img src={chickenImg} alt="Chicken" />
-              <h3>Roasted Chicken</h3>
-              <button>View Recipe</button>
-            </div>
+            {/* Card 1 */}
+            <Link to="/recipe/1" className="recipe-card-link">
+              <div className="recipe-card">
+                <img src={chickenImg} alt="Chicken" />
+                <h3>Roasted Chicken</h3>
+                <button>View Recipe</button>
+              </div>
+            </Link>
 
-            <div className="recipe-card">
-              <img src={bowlImg} alt="Vegan Bowl" />
-              <h3>Vegan Bowl</h3>
-              <button>View Recipe</button>
-            </div>
+            {/* Card 2 */}
+            <Link to="/recipe/2" className="recipe-card-link">
+              <div className="recipe-card">
+                <img src={bowlImg} alt="Vegan Bowl" />
+                <h3>Vegan Bowl</h3>
+                <button>View Recipe</button>
+              </div>
+            </Link>
 
-            <div className="recipe-card">
-              <img src={cakeImg} alt="Cake" />
-              <h3>Chocolate Cake</h3>
-              <button>View Recipe</button>
-            </div>
+            {/* Card 3 */}
+            <Link to="/recipe/3" className="recipe-card-link">
+              <div className="recipe-card">
+                <img src={cakeImg} alt="Cake" />
+                <h3>Chocolate Cake</h3>
+                <button>View Recipe</button>
+              </div>
+            </Link>
           </div>
         </section>
 
-        {/* Categories */}
+        {/* CATEGORIES */}
         <section className="categories">
           <h2>Popular Categories</h2>
 
