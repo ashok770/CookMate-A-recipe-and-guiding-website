@@ -2,35 +2,35 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import recipes from "../data/recipesData";
 
-export default function RecipeDetail() {
+const RecipeDetail = () => {
   const { id } = useParams();
-  const recipe = recipes.find((r) => r.id === Number(id));
+  const recipe = recipes.find((item) => item.id === parseInt(id));
 
-  if (!recipe) return <h2>Recipe not found</h2>;
+  if (!recipe) {
+    return <h2>Recipe Not Found ❌</h2>;
+  }
 
   return (
-    <div style={{ padding: "30px" }}>
+    <div style={{ padding: "40px" }}>
       <h1>{recipe.title}</h1>
-      <img
-        src={recipe.image}
-        alt={recipe.title}
-        style={{ width: "400px", borderRadius: "10px" }}
-      />
+      <img src={recipe.image} alt={recipe.title} width="350" />
       <p>{recipe.description}</p>
 
-      <h3>Ingredients:</h3>
+      <h3>Ingredients</h3>
       <ul>
-        {recipe.ingredients.map((item, idx) => (
-          <li key={idx}>{item}</li>
+        {recipe.ingredients.map((ing, i) => (
+          <li key={i}>{ing}</li>
         ))}
       </ul>
 
-      <h3>Steps:</h3>
+      <h3>Steps</h3>
       <ol>
-        {recipe.steps.map((step, idx) => (
-          <li key={idx}>{step}</li>
+        {recipe.steps.map((step, i) => (
+          <li key={i}>{step}</li>
         ))}
       </ol>
     </div>
   );
-}
+};
+
+export default RecipeDetail;
