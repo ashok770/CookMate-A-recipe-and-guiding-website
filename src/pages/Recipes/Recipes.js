@@ -26,13 +26,13 @@ const Recipes = () => {
       {/* SEARCH BAR */}
       <input
         type="text"
-        placeholder="Search recipes..."
         className="search-bar"
+        placeholder="Search recipes..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
 
-      {/* CATEGORY FILTER */}
+      {/* FILTER BUTTONS */}
       <div className="filter-buttons">
         {categories.map((cat) => (
           <button
@@ -45,7 +45,7 @@ const Recipes = () => {
         ))}
       </div>
 
-      {/* RECIPE GRID */}
+      {/* GRID */}
       <div className="recipes-grid">
         {filteredRecipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>
@@ -60,7 +60,7 @@ const Recipes = () => {
         ))}
 
         {filteredRecipes.length === 0 && (
-          <p className="no-results">No recipes found!</p>
+          <p className="no-results">No recipes found</p>
         )}
       </div>
     </div>
