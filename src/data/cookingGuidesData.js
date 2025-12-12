@@ -41,6 +41,20 @@ const cookingGuides = [
     image: require("../assets/guides/slowcook.jpg"),
     description: "Learn slow cooking techniques for deep flavors.",
   },
+  {
+    id: 7,
+    title: "Baking Basics",
+    category: "Dessert",
+    image: require("../assets/guides/baking.jpg"),
+    description: "Learn essential baking skills, measurements, and oven tips.",
+  },
+  {
+    id: 8,
+    title: "Food Safety",
+    category: "Breakfast",
+    image: require("../assets/guides/foodsafety.jpg"),
+    description: "Understand food handling, storage, and hygiene practices.",
+  },
 ];
 
 export default cookingGuides;
