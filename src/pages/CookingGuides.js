@@ -18,50 +18,67 @@ const CookingGuides = () => {
   });
 
   return (
-    <div className="guides-page">
-      <h1 className="guides-title">Cooking Guides</h1>
+    <div className="cg-wrapper">
+      <header className="cg-hero">
+        <div className="cg-hero-inner">
+          <h1>Cooking Guides</h1>
+          <p>Learn techniques, skills, kitchen hacks and cooking basics!</p>
+        </div>
+      </header>
 
-      {/* SEARCH */}
-      <input
-        type="text"
-        placeholder="Search guides..."
-        className="guide-search"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <main className="cg-main container">
+        <div className="cg-controls">
+          <input
+            className="cg-search"
+            type="search"
+            placeholder="Search guides..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            aria-label="Search guides"
+          />
 
-      {/* FILTER TABS */}
-      <div className="guide-filter">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`guide-filter-btn ${filter === cat ? "active" : ""}`}
-            onClick={() => setFilter(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* GRID */}
-      <div className="guides-grid">
-        {filteredGuides.map((guide) => (
-          <div className="guide-card" key={guide.id}>
-            <img src={guide.image} alt={guide.title} />
-
-            <h3>{guide.title}</h3>
-            <p className="guide-desc">{guide.description}</p>
-
-            <Link to={`/guide/${guide.id}`}>
-              <button className="guide-btn">Read More</button>
-            </Link>
+          <div className="cg-filters">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`cg-filter-btn ${filter === cat ? "active" : ""}`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
 
-        {filteredGuides.length === 0 && (
-          <p className="no-guides">No guides found</p>
-        )}
-      </div>
+        <section className="cg-grid">
+          {filteredGuides.map((guide) => (
+            <article className="cg-card" key={guide.id}>
+              <div className="cg-card-media">
+                <img src={guide.image} alt={guide.title} />
+                <div className="cg-card-tag">{guide.category}</div>
+              </div>
+
+              <div className="cg-card-body">
+                <h3>{guide.title}</h3>
+                <p className="cg-short">{guide.shortDescription}</p>
+
+                <div className="cg-card-actions">
+                  <Link to={`/guide/${guide.id}`} className="cg-read">
+                    Read More
+                  </Link>
+                  <div className="cg-meta">
+                    <span className="cg-difficulty">{guide.difficulty}</span>
+                    <span className="cg-time">{guide.time}</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+          {filteredGuides.length === 0 && (
+            <p className="cg-no">No guides found — try another search.</p>
+          )}
+        </section>
+      </main>
     </div>
   );
 };
