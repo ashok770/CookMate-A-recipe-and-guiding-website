@@ -24,15 +24,17 @@ const Recipes = () => {
       <h1 className="recipes-title">All Recipes</h1>
 
       {/* SEARCH BAR */}
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search recipes..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+      <div className="search-wrapper">
+        <input
+          type="text"
+          placeholder="Search recipes..."
+          className="search-bar"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
-      {/* FILTER BUTTONS */}
+      {/* CATEGORY FILTER */}
       <div className="filter-buttons">
         {categories.map((cat) => (
           <button
@@ -49,7 +51,9 @@ const Recipes = () => {
       <div className="recipes-grid">
         {filteredRecipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>
-            <img src={recipe.image} alt={recipe.title} />
+            <div className="recipe-img-wrapper">
+              <img src={recipe.image} alt={recipe.title} />
+            </div>
 
             <h3>{recipe.title}</h3>
 

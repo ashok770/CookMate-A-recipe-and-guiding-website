@@ -1,0 +1,121 @@
+/* MAIN WRAPPER */
+.guides-page {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f7f4ef; /* warm beige */
+}
+
+/* PAGE TITLE */
+.guides-title {
+  font-size: 38px;
+  font-weight: bold;
+  color: #063b2d;
+  margin-bottom: 25px;
+}
+
+/* SEARCH BAR */
+.guide-search {
+  width: 55%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-bottom: 25px;
+  transition: 0.3s;
+}
+
+.guide-search:focus {
+  border-color: #0a5c3b;
+  box-shadow: 0 0 6px rgba(10, 92, 59, 0.3);
+}
+
+/* FILTER BUTTONS */
+.guide-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.guide-filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.guide-filter-btn:hover {
+  background: #ccc;
+}
+
+.guide-filter-btn.active {
+  background: #0a5c3b;
+  color: white;
+}
+
+/* GRID */
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+/* CARD STYLE */
+.guide-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.guide-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.guide-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* TITLE + DESCRIPTION */
+.guide-card h3 {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #063b2d;
+}
+
+.guide-desc {
+  font-size: 14px;
+  color: #444;
+  margin: 8px 0 12px;
+  min-height: 40px;
+}
+
+/* BUTTON */
+.guide-btn {
+  background: #0a5c3b;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.guide-btn:hover {
+  background: #0c7148;
+}
+
+.no-guides {
+  grid-column: 1 / -1;
+  font-size: 18px;
+  color: #666;
+}
