@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import blogData from "../data/blogData";
+import BlogCard from "../components/BlogCard";
 import "./Blog.css";
 
 const Blog = () => {
@@ -13,18 +13,7 @@ const Blog = () => {
 
       <div className="blog-grid">
         {blogData.map((blog) => (
-          <Link to={`/blog/${blog.id}`} className="blog-link" key={blog.id}>
-            <div className="blog-card">
-              <img src={blog.image} alt={blog.title} />
-              <div className="blog-content">
-                <h3>{blog.title}</h3>
-                <p>{blog.description}</p>
-                <span className="blog-meta">
-                  {blog.author} • {blog.date}
-                </span>
-              </div>
-            </div>
-          </Link>
+          <BlogCard key={blog.id} blog={blog} />
         ))}
       </div>
     </div>
