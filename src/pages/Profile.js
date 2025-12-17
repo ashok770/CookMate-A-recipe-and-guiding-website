@@ -1,69 +1,82 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Profile.css";
 import avatar from "../assets/images/default-avatar.png";
-import { getUserProfile } from "../api/authApi";
-import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const navigate = useNavigate();
-
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [name, setName] = useState("");
+  const [editing, setEditing] = useState(false);
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await getUserProfile();
+        const res = await axios.get("http://localhost:5000/api/users/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         setUser(res.data.user);
+        setName(res.data.user.name);
       } catch (error) {
-        // Token invalid or expired
-        localStorage.removeItem("token");
-        navigate("/login");
-      } finally {
-        setLoading(false);
+        console.error("Failed to fetch profile");
       }
     };
 
     fetchProfile();
-  }, [navigate]);
+  }, [token]);
 
-  if (loading) {
-    return <h2 style={{ textAlign: "center" }}>Loading profile...</h2>;
-  }
+  const handleUpdate = async () => {
+    try {
+      const res = await axios.put(
+        "http://localhost:5000/api/users/profile",
+        { name },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUser(res.data.user);
+      setEditing(false);
+      alert("Profile updated");
+    } catch (error) {
+      alert("Update failed");
+    }
+  };
+
+  if (!user) return <p>Loading...</p>;
 
   return (
     <div className="profile-page">
       <div className="profile-card">
-        {/* Header */}
         <div className="profile-header">
-          <img src={avatar} alt="Profile" className="profile-avatar" />
+          <img src={avatar} alt="Avatar" className="profile-avatar" />
           <h2>{user.name}</h2>
           <span className={`role-badge ${user.role}`}>{user.role}</span>
         </div>
 
-        {/* Profile Info */}
         <div className="profile-section">
-          <h3>My Information</h3>
-
-          <p>
-            <strong>Name:</strong> {user.name}
-          </p>
           <p>
             <strong>Email:</strong> {user.email}
           </p>
 
-          <div className="profile-actions">
-            <button>Edit Profile</button>
-            <button
-              className="logout"
-              onClick={() => {
-                localStorage.clear();
-                navigate("/login");
-              }}
-            >
-              Logout
-            </button>
-          </div>
+          {editing ? (
+            <>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <button onClick={handleUpdate}>Save</button>
+            </>
+          ) : (
+            <button onClick={() => setEditing(true)}>Edit Profile</button>
+          )}
         </div>
       </div>
     </div>

@@ -48,3 +48,25 @@ exports.updateUserProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// for the avtar
+exports.updateAvatar = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.avatar = `/uploads/avatars/${req.file.filename}`;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Avatar updated successfully",
+      avatar: user.avatar,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Avatar upload failed" });
+  }
+};
