@@ -4,7 +4,6 @@ const API = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-// attach token
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -13,5 +12,5 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// ✅ Get all users
+export const getAdminStats = () => API.get("/admin/stats");
 export const getAllUsers = () => API.get("/admin/users");

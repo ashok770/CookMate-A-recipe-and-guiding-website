@@ -1,0 +1,28 @@
+.admin-dashboard {
+  padding: 30px;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 220px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.stat-card h2 {
+  font-size: 36px;
+  color: #074d35;
+}
+
+.stat-card p {
+  margin-top: 10px;
+  font-weight: 500;
+}
