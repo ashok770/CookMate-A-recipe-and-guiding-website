@@ -11,15 +11,15 @@ import BlogDetail from "../pages/BlogDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
-import AdminDashboard from "../pages/admin/AdminDashboard";
 
 import ProtectedRoute from "./ProtectedRoute";
-import AdminRoute from "./AdminRoute"; // ✅ FIXED IMPORT
+import AdminRoute from "./AdminRoute";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* 🌍 Public Routes */}
+      {/* Public */}
       <Route path="/" element={<Home />} />
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/recipe/:id" element={<RecipeDetail />} />
@@ -30,7 +30,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* 🔐 User Protected Route */}
+      {/* User */}
       <Route
         path="/profile"
         element={
@@ -40,7 +40,7 @@ const AppRoutes = () => {
         }
       />
 
-      {/* 🛡️ Admin Protected Route */}
+      {/* Admin */}
       <Route
         path="/admin/dashboard"
         element={

@@ -1,16 +1,14 @@
-const AdminDashboard = () => {
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>Admin Dashboard</h1>
-      <p>Welcome, Admin 👑</p>
+import React from "react";
+import UsersTable from "./UsersTable";
+import "./Admin.css";
 
-      <ul>
-        <li>View All Users</li>
-        <li>Manage Users</li>
-        <li>Delete Users</li>
-      </ul>
+export default function AdminDashboard() {
+  return (
+    <div className="admin-dashboard">
+      <h1>Admin Dashboard 👑</h1>
+      <p>Manage users and system data</p>
+
+      <UsersTable />
     </div>
   );
-};
-
-export default AdminDashboard;
+}

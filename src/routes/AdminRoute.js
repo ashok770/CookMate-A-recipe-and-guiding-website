@@ -1,21 +1,12 @@
+import React from "react";
 import { Navigate } from "react-router-dom";
 
-const AdminRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
+export default function AdminRoute({ children }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // Not logged in
-  if (!token || !user) {
-    return <Navigate to="/login" />;
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/profile" />;
   }
 
-  // Logged in but NOT admin
-  if (user.role !== "admin") {
-    return <Navigate to="/" />;
-  }
-
-  // Admin allowed
   return children;
-};
-
-export default AdminRoute;
+}
