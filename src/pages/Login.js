@@ -24,14 +24,18 @@ export default function Login() {
     try {
       const res = await loginUser({ email, password });
 
-      // ✅ Save token
+      // ✅ Save token & user
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Login successful");
 
-      // Redirect
-      navigate("/profile");
+      // ✅ IMPORTANT: role-based redirect
+      if (res.data.user.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/profile");
+      }
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
     }
@@ -42,14 +46,17 @@ export default function Login() {
       <div className="login-card">
         <h2 className="login-title">🔐 Login to CookMate</h2>
 
+        {/* Role toggle (UI only) */}
         <div className="role-toggle">
           <button
+            type="button"
             className={role === "user" ? "active" : ""}
             onClick={() => setRole("user")}
           >
             User Login
           </button>
           <button
+            type="button"
             className={role === "admin" ? "active" : ""}
             onClick={() => setRole("admin")}
           >
