@@ -3,13 +3,21 @@ const router = express.Router();
 
 const { protect } = require("../middleware/authMiddleware");
 const { adminOnly } = require("../middleware/adminMiddleware");
-const { getAllUsers } = require("../controllers/adminController");
 
-/* =========================
-   ADMIN ROUTES
-========================= */
+const {
+  adminDashboard,
+  getAllUsers,
+  getAdminStats,
+} = require("../controllers/adminController");
 
-// GET all users (ADMIN ONLY)
+// ============================
+// Admin Routes
+// ============================
+router.get("/dashboard", protect, adminOnly, adminDashboard);
+
 router.get("/users", protect, adminOnly, getAllUsers);
+
+// ✅ ADMIN ANALYTICS ROUTE
+router.get("/stats", protect, adminOnly, getAdminStats);
 
 module.exports = router;
