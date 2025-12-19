@@ -8,6 +8,22 @@
   color: white;
 }
 
+/* Mobile responsive navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 15px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-links {
+    gap: 15px;
+  }
+  
+  .nav-links a {
+    font-size: 16px;
+  }
+}
+
 /* Brand section */
 .brand {
   display: flex;
@@ -45,6 +61,14 @@
 .page-content {
   padding: 30px;
   font-size: 20px;
+}
+
+/* Mobile responsive page content */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 15px;
+    font-size: 18px;
+  }
 }
 body {
   margin: 0;
