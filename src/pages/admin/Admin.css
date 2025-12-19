@@ -1,0 +1,31 @@
+.admin-dashboard {
+  padding: 30px;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.users-table th,
+.users-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.role.admin {
+  color: green;
+  font-weight: bold;
+}
+
+.role.user {
+  color: #555;
+}

@@ -1,0 +1,77 @@
+.login-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f4f0;
+}
+
+.login-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #074d35;
+}
+
+.role-toggle {
+  display: flex;
+  background: #eef3f1;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.role-toggle button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  font-weight: 600;
+  color: #555;
+  border-radius: 10px;
+}
+
+.role-toggle .active {
+  background: #074d35;
+  color: #fff;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #074d35;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.login-btn:hover {
+  background: #063d2a;
+}
+
+.login-note {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin-top: 15px;
+}
