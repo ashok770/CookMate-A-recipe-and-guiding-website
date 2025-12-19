@@ -1,0 +1,146 @@
+/* GuideDetail.css - premium */
+:root {
+  --green: #074d35;
+  --muted: #6b6b6b;
+  --card-shadow: 0 12px 36px rgba(8, 36, 28, 0.08);
+}
+
+.gd-hero {
+  height: 320px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.gd-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 77, 53, 0.6) 0%,
+    rgba(7, 77, 53, 0.35) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.gd-hero-overlay .container {
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+}
+.gd-hero h1 {
+  font-size: 36px;
+  margin: 0 0 6px;
+}
+.gd-hero p {
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* main layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+.gd-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* left content */
+.gd-left {
+  background: transparent;
+}
+.gd-section {
+  margin-bottom: 22px;
+}
+.gd-section h2 {
+  color: var(--green);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.gd-long {
+  color: #333;
+  line-height: 1.7;
+}
+.gd-steps {
+  padding-left: 18px;
+  color: #222;
+}
+.gd-tips {
+  padding-left: 18px;
+  color: #222;
+}
+
+/* right sidebar cards */
+.gd-right {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.gd-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+.gd-card h3 {
+  margin: 0 0 10px;
+  color: var(--green);
+}
+.gd-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.gd-tool {
+  background: #f2f6f3;
+  color: var(--green);
+  padding: 8px 10px;
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+/* actions */
+.gd-save {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.gd-backlink {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* not found */
+.gd-notfound {
+  text-align: center;
+  padding: 60px 20px;
+}
+.gd-notfound h2 {
+  color: var(--green);
+}
+
+/* responsive adjustments */
+@media (max-width: 980px) {
+  .gd-grid {
+    grid-template-columns: 1fr;
+  }
+  .gd-hero {
+    height: 240px;
+  }
+  .gd-hero-overlay .container {
+    padding: 0;
+  }
+}

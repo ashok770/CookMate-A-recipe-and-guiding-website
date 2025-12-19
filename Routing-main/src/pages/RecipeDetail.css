@@ -1,0 +1,192 @@
+/* --- Global Recipe Page Container --- */
+.recipe-detail-page {
+  width: 100%;
+  padding-bottom: 60px;
+  background-color: #fcfcfc;
+}
+
+/* --- HERO SECTION (Banner) --- */
+.recipe-hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ADJUSTMENT 1: Made image LIGHTER (changed from 80% to 90%) */
+  filter: brightness(90%) blur(1px);
+  transition: filter 0.3s ease;
+}
+
+.recipe-hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333; /* Changed text color to dark gray for better contrast on a lighter image */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9); /* Lighter shadow */
+}
+
+.recipe-hero-content h1 {
+  font-size: 56px;
+  margin-bottom: 8px;
+  font-family: serif;
+}
+
+.recipe-hero-content p {
+  font-size: 20px;
+  font-weight: 400; /* Slightly heavier font */
+}
+
+/* --- BACK BUTTON --- */
+.back-btn-container {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #074d35;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: #e6f7ef;
+  color: #053b2a;
+}
+.back-btn span {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+/* --- CONTENT LAYOUT --- */
+.recipe-detail-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr;
+  gap: 80px;
+  padding: 0 20px;
+}
+
+/* --- LEFT SIDE (Ingredients & Steps) --- */
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #074d35;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.recipe-left ul,
+.recipe-left ol {
+  margin-left: 0;
+  padding-left: 25px;
+  list-style-position: outside;
+}
+
+.recipe-left li {
+  margin-bottom: 15px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* ADJUSTMENT 3: Increased font size for Recipe Steps */
+.recipe-left ol li {
+  list-style-type: decimal;
+  font-weight: 500;
+  font-size: 18px; /* Changed from 17px to 18px */
+}
+
+.recipe-left ol {
+  margin-top: 40px;
+}
+
+/* --- RIGHT PANEL (Info Cards) --- */
+.info-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.info-card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #074d35;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.info-card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.info-card strong {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Tags styling */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ADJUSTMENT 2: Changed Tag color to a softer gold/beige palette */
+.tag {
+  padding: 8px 15px;
+  background: #fdf5e6; /* Light Beige/Cream */
+  color: #9c6c19; /* Dark Brown/Gold text */
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.tag:hover {
+  background: #fbe6c6; /* Slightly darker beige on hover */
+}
+
+/* --- SAVE BUTTON --- */
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  /* ADJUSTMENT 2: Slightly darker orange for a richer look */
+  background: #e69100;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(230, 145, 0, 0.4);
+  transition: 0.2s;
+}
+
+.save-btn:hover {
+  background: #c27a00; /* Darker hover state */
+  box-shadow: 0 2px 8px rgba(230, 145, 0, 0.6);
+}
