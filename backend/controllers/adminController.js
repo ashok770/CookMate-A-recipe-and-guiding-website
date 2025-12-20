@@ -1,8 +1,8 @@
 const User = require("../models/User");
 
-// ============================
-// Admin Dashboard
-// ============================
+/* ======================
+   ADMIN DASHBOARD
+====================== */
 exports.adminDashboard = async (req, res) => {
   res.status(200).json({
     success: true,
@@ -11,33 +11,32 @@ exports.adminDashboard = async (req, res) => {
   });
 };
 
-// ============================
-// Get All Users
-// ============================
+/* ======================
+   GET ALL USERS
+====================== */
 exports.getAllUsers = async (req, res) => {
   const users = await User.find().select("-password");
-
   res.status(200).json({
     success: true,
-    total: users.length,
+    count: users.length,
     users,
   });
 };
 
-// ============================
-// Admin Analytics (COUNTS)
-// ============================
+/* ======================
+   ADMIN ANALYTICS (COUNTS)
+====================== */
 exports.getAdminStats = async (req, res) => {
   const totalUsers = await User.countDocuments();
-  const totalAdmins = await User.countDocuments({ role: "admin" });
-  const totalNormalUsers = await User.countDocuments({ role: "user" });
+  const admins = await User.countDocuments({ role: "admin" });
+  const users = await User.countDocuments({ role: "user" });
 
   res.status(200).json({
     success: true,
     stats: {
       totalUsers,
-      totalAdmins,
-      totalNormalUsers,
+      admins,
+      users,
     },
   });
 };

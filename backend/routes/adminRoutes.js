@@ -1,23 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const { protect } = require("../middleware/authMiddleware");
-const { adminOnly } = require("../middleware/adminMiddleware");
-
 const {
   adminDashboard,
   getAllUsers,
   getAdminStats,
 } = require("../controllers/adminController");
 
-// ============================
-// Admin Routes
-// ============================
-router.get("/dashboard", protect, adminOnly, adminDashboard);
+const { protect, isAdmin } = require("../middleware/authMiddleware");
 
-router.get("/users", protect, adminOnly, getAllUsers);
-
-// ✅ ADMIN ANALYTICS ROUTE
-router.get("/stats", protect, adminOnly, getAdminStats);
+router.get("/dashboard", protect, isAdmin, adminDashboard);
+router.get("/users", protect, isAdmin, getAllUsers);
+router.get("/stats", protect, isAdmin, getAdminStats);
 
 module.exports = router;

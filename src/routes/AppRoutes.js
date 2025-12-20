@@ -11,7 +11,7 @@ import BlogDetail from "../pages/BlogDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
-
+import AdminAnalytics from "../pages/admin/AdminAnalytics";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
 import AdminDashboard from "../pages/admin/AdminDashboard";
@@ -46,6 +46,15 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminDashboard />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/analyatics"
+        element={
+          <AdminRoute>
+            <AdminAnalytics />
           </AdminRoute>
         }
       />
