@@ -45,14 +45,6 @@ const Navbar = () => {
                   <NavLink to="/admin/dashboard" className="admin-link">
                     Admin Panel
                   </NavLink>
-
-                  <NavLink to="/admin/recipes" className="admin-link">
-                    Recipes
-                  </NavLink>
-
-                  <NavLink to="/admin/analytics" className="admin-link">
-                    Analytics
-                  </NavLink>
                 </>
               )}
 
