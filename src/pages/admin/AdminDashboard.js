@@ -5,6 +5,53 @@ import AdminAnalytics from "./AdminAnalytics";
 import UsersTable from "./UsersTable";
 import "./AdminDashboard.css";
 
+import { useNavigate } from "react-router-dom";
+
+const ProfilePanel = () => {
+  const navigate = useNavigate();
+  const userStr = localStorage.getItem("user");
+  let user = null;
+  try {
+    user = userStr ? JSON.parse(userStr) : null;
+  } catch (err) {
+    user = null;
+  }
+
+  if (!user) {
+    return (
+      <div className="profile-panel">
+        <p>No profile data available.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="profile-panel">
+      <div className="profile-row">
+        <img
+          src={
+            user.avatar
+              ? `http://localhost:5000${user.avatar}`
+              : "/uploads/default.png"
+          }
+          alt="avatar"
+          className="profile-avatar"
+        />
+        <div className="profile-info">
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+          <p className="role">Role: {user.role}</p>
+          <div style={{ marginTop: 12 }}>
+            <button className="btn-edit" onClick={() => navigate("/profile")}>
+              Open Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,6 +103,12 @@ const AdminDashboard = () => {
         >
           Users
         </button>
+        <button
+          className={activeTab === "profile" ? "tab active" : "tab"}
+          onClick={() => setActiveTab("profile")}
+        >
+          Profile
+        </button>
       </div>
 
       <div className="dashboard-content">
@@ -101,6 +154,11 @@ const AdminDashboard = () => {
         {activeTab === "users" && (
           <div className="tab-users">
             <UsersTable />
+          </div>
+        )}
+        {activeTab === "profile" && (
+          <div className="tab-profile">
+            <ProfilePanel />
           </div>
         )}
       </div>

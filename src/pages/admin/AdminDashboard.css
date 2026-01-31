@@ -26,3 +26,93 @@
   margin-top: 10px;
   font-weight: 500;
 }
+
+.dashboard-header h1 {
+  margin: 0 0 6px 0;
+}
+
+.dashboard-header p {
+  margin: 0 0 18px 0;
+  color: #666;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tab.active {
+  background: linear-gradient(90deg, #074d35 0%, #0b6b45 100%);
+  color: white;
+  box-shadow: 0 6px 18px rgba(7, 77, 53, 0.15);
+}
+
+.dashboard-content {
+  margin-top: 10px;
+}
+
+.profile-panel {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f0f0f0;
+}
+
+.profile-info h3 {
+  margin: 0 0 6px 0;
+}
+
+.profile-info p {
+  margin: 0;
+  color: #555;
+}
+
+.profile-info .role {
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.btn-edit {
+  padding: 8px 14px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .profile-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .profile-avatar {
+    width: 70px;
+    height: 70px;
+  }
+}

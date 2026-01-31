@@ -28,6 +28,31 @@
   box-shadow: 0 0 6px rgba(0, 80, 50, 0.3);
 }
 
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error-message {
+  background-color: #ffebee;
+  border: 2px solid #f44336;
+  color: #c62828;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.recipe-desc {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+  min-height: 40px;
+}
+
 /* CATEGORY FILTER BUTTONS */
 .filter-buttons {
   display: flex;

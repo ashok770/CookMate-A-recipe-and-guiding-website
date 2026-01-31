@@ -37,7 +37,8 @@ const Navbar = () => {
           {/* 🔐 USER LOGGED IN */}
           {user && (
             <>
-              <NavLink to="/profile">My Profile</NavLink>
+              {/* show My Profile only for non-admin users */}
+              {!isAdmin && <NavLink to="/profile">My Profile</NavLink>}
 
               {/* 🛡️ ADMIN ONLY LINKS */}
               {isAdmin && (
