@@ -30,7 +30,6 @@ const Navbar = () => {
           <NavLink to="/" end>
             Home
           </NavLink>
-
           <NavLink to="/recipes">Recipes</NavLink>
           <NavLink to="/guides">Cooking Guides</NavLink>
           <NavLink to="/blog">Blog</NavLink>
@@ -40,11 +39,21 @@ const Navbar = () => {
             <>
               <NavLink to="/profile">My Profile</NavLink>
 
-              {/* 🛡️ ADMIN ONLY */}
+              {/* 🛡️ ADMIN ONLY LINKS */}
               {isAdmin && (
-                <NavLink to="/admin/dashboard" className="admin-link">
-                  Admin Panel
-                </NavLink>
+                <>
+                  <NavLink to="/admin/dashboard" className="admin-link">
+                    Admin Panel
+                  </NavLink>
+
+                  <NavLink to="/admin/recipes" className="admin-link">
+                    Recipes
+                  </NavLink>
+
+                  <NavLink to="/admin/analytics" className="admin-link">
+                    Analytics
+                  </NavLink>
+                </>
               )}
 
               <button className="logout-btn" onClick={handleLogout}>

@@ -12,6 +12,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
 import AdminAnalytics from "../pages/admin/AdminAnalytics";
+import AdminRecipes from "../pages/admin/AdminRecipes";
+import AddRecipe from "../pages/admin/AddRecipe";
+import EditRecipe from "../pages/admin/EditRecipe";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
 import AdminDashboard from "../pages/admin/AdminDashboard";
@@ -55,6 +58,33 @@ const AppRoutes = () => {
         element={
           <AdminRoute>
             <AdminAnalytics />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/recipes"
+        element={
+          <AdminRoute>
+            <AdminRecipes />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/recipes/add"
+        element={
+          <AdminRoute>
+            <AddRecipe />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/admin/recipes/edit/:id"
+        element={
+          <AdminRoute>
+            <EditRecipe />
           </AdminRoute>
         }
       />
