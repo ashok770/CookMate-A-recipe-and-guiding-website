@@ -11,6 +11,7 @@ const EditRecipe = () => {
     description: "",
     ingredients: "",
     instructions: "",
+    image: "",
     cookingTime: "",
     servings: "",
   });
@@ -26,7 +27,21 @@ const EditRecipe = () => {
     try {
       setLoading(true);
       const res = await getRecipeById(id);
-      setFormData(res.data);
+      // map arrays -> textarea strings for editing
+      const data = res.data || {};
+      setFormData({
+        title: data.title || "",
+        description: data.description || "",
+        ingredients: Array.isArray(data.ingredients)
+          ? data.ingredients.join("\n")
+          : data.ingredients || "",
+        instructions: Array.isArray(data.steps)
+          ? data.steps.join("\n")
+          : data.steps || "",
+        image: data.image || "",
+        cookingTime: data.cookingTime || "",
+        servings: data.servings || "",
+      });
     } catch (error) {
       setError("Error loading recipe. Please try again.");
       console.error("Error fetching recipe:", error);
@@ -39,6 +54,16 @@ const EditRecipe = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setError("");
+  };
+
+  const handleImageFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +97,23 @@ const EditRecipe = () => {
 
     setSubmitLoading(true);
     try {
-      await updateRecipe(id, formData);
+      const payload = {
+        title: formData.title,
+        description: formData.description,
+        ingredients: formData.ingredients
+          .split(/\r?\n|,/) // split by newline or comma
+          .map((s) => s.trim())
+          .filter(Boolean),
+        steps: formData.instructions
+          .split(/\r?\n|\.|\n/)
+          .map((s) => s.trim())
+          .filter(Boolean),
+        image: formData.image,
+        cookingTime: formData.cookingTime,
+        servings: formData.servings,
+      };
+
+      await updateRecipe(id, payload);
       navigate("/admin/recipes");
     } catch (error) {
       setError(
@@ -130,6 +171,33 @@ const EditRecipe = () => {
               rows="4"
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label>Recipe Image (upload or URL)</label>
+            <div className="image-upload-wrapper">
+              <input
+                className="image-input"
+                type="file"
+                accept="image/*"
+                onChange={handleImageFileChange}
+              />
+              <p style={{ margin: "10px 0 0 0", color: "#666" }}>
+                Or paste an image URL
+              </p>
+              <input
+                type="text"
+                name="image"
+                placeholder="https://example.com/image.jpg"
+                value={formData.image || ""}
+                onChange={handleChange}
+              />
+              {formData.image && (
+                <div className="image-preview">
+                  <img src={formData.image} alt="Preview" />
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="form-group">

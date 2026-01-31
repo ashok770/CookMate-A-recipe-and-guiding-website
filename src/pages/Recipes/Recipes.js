@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Recipes.css";
-import recipes from "../../data/recipesData";
+import { getAllRecipes } from "../../services/recipeService";
 import { Link } from "react-router-dom";
 
 const Recipes = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("All");
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert"];
 
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        setLoading(true);
+        const res = await getAllRecipes();
+        setRecipes(res.data || []);
+      } catch (err) {
+        console.error("Error fetching recipes:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRecipes();
+  }, []);
+
   const filteredRecipes = recipes.filter((recipe) => {
-    const matchesSearch = recipe.title
+    const matchesSearch = (recipe.title || "")
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
 
@@ -49,19 +66,21 @@ const Recipes = () => {
 
       {/* GRID */}
       <div className="recipes-grid">
-        {filteredRecipes.map((recipe) => (
-          <div className="recipe-card" key={recipe.id}>
-            <div className="recipe-img-wrapper">
-              <img src={recipe.image} alt={recipe.title} />
+        {loading && <p className="no-results">Loading recipes...</p>}
+        {!loading &&
+          filteredRecipes.map((recipe) => (
+            <div className="recipe-card" key={recipe._id || recipe.id}>
+              <div className="recipe-img-wrapper">
+                <img src={recipe.image} alt={recipe.title} />
+              </div>
+
+              <h3>{recipe.title}</h3>
+
+              <Link to={`/recipe/${recipe._id || recipe.id}`}>
+                <button className="view-btn">View Recipe</button>
+              </Link>
             </div>
-
-            <h3>{recipe.title}</h3>
-
-            <Link to={`/recipe/${recipe.id}`}>
-              <button className="view-btn">View Recipe</button>
-            </Link>
-          </div>
-        ))}
+          ))}
 
         {filteredRecipes.length === 0 && (
           <p className="no-results">No recipes found</p>

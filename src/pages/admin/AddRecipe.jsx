@@ -9,6 +9,7 @@ const AddRecipe = () => {
     description: "",
     ingredients: "",
     instructions: "",
+    image: "",
     cookingTime: "",
     servings: "",
   });
@@ -20,6 +21,16 @@ const AddRecipe = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setError("");
+  };
+
+  const handleImageFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData((prev) => ({ ...prev, image: reader.result }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -53,7 +64,24 @@ const AddRecipe = () => {
 
     setLoading(true);
     try {
-      await createRecipe(formData);
+      // Convert ingredients/instructions into arrays expected by backend
+      const payload = {
+        title: formData.title,
+        description: formData.description,
+        ingredients: formData.ingredients
+          .split(/\r?\n|,/) // split by newline or comma
+          .map((s) => s.trim())
+          .filter(Boolean),
+        steps: formData.instructions
+          .split(/\r?\n|\.|\n/) // split into steps by newline or sentence
+          .map((s) => s.trim())
+          .filter(Boolean),
+        image: formData.image,
+        cookingTime: formData.cookingTime,
+        servings: formData.servings,
+      };
+
+      await createRecipe(payload);
       navigate("/admin/recipes");
     } catch (error) {
       setError(
@@ -101,6 +129,33 @@ const AddRecipe = () => {
               rows="4"
               required
             />
+          </div>
+
+          <div className="form-group">
+            <label>Recipe Image (upload or URL)</label>
+            <div className="image-upload-wrapper">
+              <input
+                className="image-input"
+                type="file"
+                accept="image/*"
+                onChange={handleImageFileChange}
+              />
+              <p style={{ margin: "10px 0 0 0", color: "#666" }}>
+                Or paste an image URL
+              </p>
+              <input
+                type="text"
+                name="image"
+                placeholder="https://example.com/image.jpg"
+                value={formData.image}
+                onChange={handleChange}
+              />
+              {formData.image && (
+                <div className="image-preview">
+                  <img src={formData.image} alt="Preview" />
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="form-group">
